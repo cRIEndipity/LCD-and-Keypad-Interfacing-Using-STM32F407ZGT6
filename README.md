@@ -8,3 +8,9 @@ For the LCD, we began with the basics of displaying plain text. Later, we modifi
 For the keypad, we first mapped all the keys using a truth table by connecting rows and columns, we could detect which button was pressed. The program then scanned the keypad and displayed the pressed key on either the LCD or the computer screen. Numbers were shown as they are, while hexadecimal keys (10–15) appeared as letters A–F. This provided a clear view of how microcontrollers interpret user inputs and convert them into understandable outputs.
 
 Overall, this activity emphasized the importance of both hardware and software in embedded systems development. It involved not just connecting wires but also writing effective code, designing reusable libraries, and ensuring the system functions smoothly. The challenges we faced, like fixing LCD contrast issues, checking wiring errors, and debugging code, gave us valuable experience in problem-solving. More importantly, it showed how even simple components like an LCD and a keypad can teach essential skills needed to build more complex projects in the future.
+
+## Using the examples
+
+Each `A*.h` file is a standalone STM32CubeIDE example. Use one example at a time in an STM32F407 project; these files are not meant to be included together because each defines its own `main()` and peripheral initialization functions. The project must provide the STM32 HAL, `main.h`, and the `lcd_i2c.h`/`lcd_i2c.c` and, for keypad examples, `keypad.h`/`keypad.c` drivers. Those drivers are not included in this repository.
+
+The LCD examples configure I2C1 on PB6 (SCL) and PB7 (SDA), using the board's I2C pull-ups. The keypad examples additionally use PA4-PA7 for output lines and PF4-PF7 for input lines; the keypad driver must use the same mapping. Check the LCD backpack's I2C address and the physical keypad wiring against the driver before running an example.
